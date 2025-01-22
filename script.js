@@ -23,9 +23,27 @@ rl.question("Please enter your symptoms: ", async (symptoms) => {
         });
 
         console.log("\nPossible Conditions:\n", response.choices[0].message.content);
+
+        // Ask the next question inside the callback
+        rl.question("\nEnter condition you would like to know more about: ", async (condition) => {
+            try {
+                const conditionResponse = await openai.chat.completions.create({
+                    model: "gpt-3.5-turbo",
+                    messages: [
+                        { role: "user", content: `Can you provide detailed information about the condition: ${condition}? Include causes, symptoms, treatments, and prevention methods.` }
+                    ]
+                });
+
+                console.log(`\nDetails about ${condition}:\n`, conditionResponse.choices[0].message.content);
+            } catch (error) {
+                console.error("Error:", error);
+            } finally {
+                rl.close();
+            }
+        });
+
     } catch (error) {
         console.error("Error:", error);
-    } finally {
         rl.close();
     }
 });
