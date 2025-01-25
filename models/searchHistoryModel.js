@@ -1,8 +1,16 @@
 import mongoose from 'mongoose';
 
 const searchHistorySchema = new mongoose.Schema({
-    text: {
+    symptoms: {
         type: String,
+        required: true
+    },
+    conditions: {
+        type: String,
+        required: true
+    },
+    date: {
+        type: Date,
         required: true
     }
 })

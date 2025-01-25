@@ -18,7 +18,7 @@ app.use(express.json());
 
 mongoose
 .connect(process.env.MONGODB_LINK)
-.then(() => console.log('we are connected to mongodb'))
+.then(() => console.log('We are connected to mongodb'))
 .catch((err) => console.log(err))
 
 app.use("/api", diagnosisRoutes);

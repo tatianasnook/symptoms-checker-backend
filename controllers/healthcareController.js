@@ -25,7 +25,7 @@ export const getHealthcareFacilities = async (req, res) => {
             {
                 params: {
                     location: `${lat},${lng}`,
-                    radius: 25000, // Search within 50 km
+                    radius: 16000, // Search within 50 km
                     type: ['hospital', 'health', 'clinic'],
                     keyword: 'express care|urgent care|express clinic|urgent clinic|hospital',
                     key: process.env.GOOGLE_API_KEY,
