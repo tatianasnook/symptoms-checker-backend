@@ -1,20 +1,29 @@
 import express from 'express';
-import axios from 'axios';
 import dotenv from 'dotenv';
 import cors from 'cors';
 import healthcareRoutes from './routes/healthcareRoutes.js';
 import diagnosisRoutes from './routes/diagnosisRoutes.js';
-
-dotenv.config();
+import mongoose from 'mongoose';
+import searchHistoryRoutes from './routes/searchHistoryRoutes.js';
 
 const app = express();
-const PORT = 4000;
+
+dotenv.config();
+mongoose.set('strictQuery', false);
+
+const PORT = process.env.PORT || 4000;
 
 app.use(cors());
 app.use(express.json());
 
-app.use(healthcareRoutes);
+mongoose
+.connect(process.env.MONGODB_LINK)
+.then(() => console.log('we are connected to mongodb'))
+.catch((err) => console.log(err))
+
 app.use("/api", diagnosisRoutes);
+app.use(healthcareRoutes);
+app.use(searchHistoryRoutes);
 
 app.listen(PORT, () => {
     console.log(`Server running on http://localhost:${PORT}`);
