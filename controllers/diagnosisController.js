@@ -10,6 +10,10 @@ const openai = new OpenAI({
 export const checkSymptoms = async (req, res) => {
     const { symptoms } = req.body;
 
+    if (!symptoms || symptoms.trim() === "") {
+        return res.status(400).json({ error: "Symptoms are required" });
+    }
+
     try {
         const response = await openai.chat.completions.create({
             model: "gpt-3.5-turbo",
@@ -30,6 +34,10 @@ export const checkSymptoms = async (req, res) => {
 
 export const getConditionInfo = async (req, res) => {
     const { condition } = req.body;
+
+    if (!condition || condition.trim() === "") {
+        return res.status(400).json({ error: "Condition is required" });
+    }
 
     try {
         const response = await openai.chat.completions.create({
