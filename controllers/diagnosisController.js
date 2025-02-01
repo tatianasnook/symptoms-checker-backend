@@ -45,15 +45,7 @@ export const getConditionInfo = async (req, res) => {
             messages: [
                 { 
                     role: "user", 
-                    // content: `Can you provide detailed information about the condition: ${condition}? Include causes, symptoms, treatments, and prevention methods.`
-                    content: `Please provide details about ${condition} in the following structured JSON format:
-
-                        {
-                        "Causes": "List causes here.",
-                        "Symptoms": "List symptoms here.",
-                        "Treatments": "List treatments here.",
-                        "Prevention methods": "List prevention methods here."
-                        }`
+                    content: `Can you provide detailed information about the condition: ${condition}? Include causes, symptoms, treatments, and prevention methods.`
                 }
             ]
         });
