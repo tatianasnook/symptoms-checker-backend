@@ -17,16 +17,19 @@ app.use(cors());
 app.use(express.json());
 
 mongoose
-.connect(process.env.MONGODB_LINK)
-.then(() => console.log('We are connected to mongodb'))
-.catch((err) => console.log(err))
+  .connect(process.env.MONGODB_LINK)
+  .then(() => console.log('We are connected to mongodb'))
+  .catch((err) => console.log(err));
 
-app.use("/api", diagnosisRoutes);
+app.use('/api', diagnosisRoutes);
 app.use(healthcareRoutes);
 app.use(searchHistoryRoutes);
 
-app.listen(PORT, () => {
+// Only start the server if not in test environment
+if (process.env.NODE_ENV !== 'test') {
+  app.listen(PORT, () => {
     console.log(`Server running on http://localhost:${PORT}`);
-});
+  });
+}
 
 export default app;

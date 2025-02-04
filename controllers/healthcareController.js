@@ -29,14 +29,14 @@ export const getHealthcareFacilities = async (req, res) => {
             {
                 params: {
                     location: `${lat},${lng}`,
-                    radius: 16000, // Search within 50 km
+                    radius: 50000, // Search within 50 km
                     type: ['hospital', 'health', 'clinic'],
-                    keyword: 'express care|urgent care|express clinic|urgent clinic|hospital',
+                    keyword: 'hospital|express care|urgent care|express clinic|urgent clinic',
                     key: process.env.GOOGLE_API_KEY,
                 },
             }
         );
-
+        console.log(placesResponse.data.results);
         res.json(placesResponse.data.results);
     } catch (error) {
         console.error('Error fetching healthcare facilities:', error.message);
