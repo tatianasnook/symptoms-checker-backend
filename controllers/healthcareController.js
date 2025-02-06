@@ -2,6 +2,7 @@ import axios from 'axios';
 
 export const getHealthcareFacilities = async (req, res) => {
     const { zipCode } = req.query;
+    console.log('Google API Key:', process.env.GOOGLE_API_KEY);
     
     try {
         // Convert ZIP code to coordinates using Google Geocoding API
@@ -29,9 +30,9 @@ export const getHealthcareFacilities = async (req, res) => {
             {
                 params: {
                     location: `${lat},${lng}`,
-                    radius: 50000, // Search within 50 km
-                    type: ['hospital', 'health', 'clinic'],
-                    keyword: 'hospital|express care|urgent care|express clinic|urgent clinic',
+                    radius: 16093, //it is 10 miles
+                    keyword: 'hospital|express care',
+                    // type: 'hospital',
                     key: process.env.GOOGLE_API_KEY,
                 },
             }
