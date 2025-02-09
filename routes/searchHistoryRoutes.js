@@ -7,6 +7,5 @@ router.get('/getRecords', getRecord);
 router.post('/saveRecord', saveRecord);
 router.delete('/deleteRecord/:id', deleteRecord);
 
-
 export default router;
 

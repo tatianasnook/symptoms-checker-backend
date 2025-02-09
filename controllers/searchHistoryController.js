@@ -15,7 +15,6 @@ export const saveRecord = async (req, res) => {
     try {
         const { symptoms, conditions, date } = req.body;
         const newRecord = await SearchHistoryModel.create({ symptoms, conditions, date });
-        // console.log('Record added:', newRecord);
         res.status(201).json(newRecord);
     } catch (error) {
         res.status(500).json({ error: "Failed to save search history" });
