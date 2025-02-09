@@ -40,12 +40,13 @@ This is the backend for SymptoScan, a medical symptom analysis application. It p
 4. Run the server
    
     npm start
-    
+
     The server will start on http://localhost:4000
 
 ## Deployment
 
 Render Deployment
+
 To deploy on Render:
 
 1. Create a new Web Service

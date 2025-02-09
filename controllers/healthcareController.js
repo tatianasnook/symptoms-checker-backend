@@ -2,7 +2,6 @@ import axios from 'axios';
 
 export const getHealthcareFacilities = async (req, res) => {
     const { zipCode } = req.query;
-    console.log('Google API Key:', process.env.GOOGLE_API_KEY);
     
     try {
         // Convert ZIP code to coordinates using Google Geocoding API
